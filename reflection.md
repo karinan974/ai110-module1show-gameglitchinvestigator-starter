@@ -14,9 +14,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+|  " "  | Null              |        0        |  No Output / Error     |
+|  25   | Go Lower          |  Go Higher      |    Go HIGHER!          |
+|  5    | Go Higher         |  Go Lower       |    Go LOWER!           |
 
 ---
 
@@ -25,6 +25,17 @@ Document at least 3 bugs you found. Add rows as needed.
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
+The way I prompted the AI to assist with the "Too High / Too Low Error":
+
+I have a bug in my code scan through this files to help me find and fix the bug @app.py  @logic_utils.py . How it is supposed to work (logic): When the guess is higher than the secret number it's should to print "Too High", "📈 Go LOWER!" and when the guess is lower than the secret number it's should  to print "Too Low", "📉 Go HIGHER". The current logic does not do this. I did put this comment,  # FIXME: Logic breaks here; where I believe the issue is. 
+
+This provided both correct and incorrect. 
+Correct: It was correctly fixing the logic within app.py 
+Incorrect: Although the logic was being fixed it was not taking into consideration logic_utils.py to transfer the game logic to that file.
+
+To verify the code I ran app.py with the fixes and played the game to make 
+sure the output was accurate. 
 
 ---
 
