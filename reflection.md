@@ -42,21 +42,27 @@ sure the output was accurate.
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
+# I decided a bug is really fixed when the logic is functioning as expected and it passes the py test as that asserts the functions and logic is working as expected (verification)
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
+# Manually I played the game to test that as I inputted guesses it would output the expected result such as Go Higher or Lower and using pytest I was also testing this.
 - Did AI help you design or understand any tests? How?
+# Yes AI helped me design and understand the tests. I prompted the AI with the types of pytest I wanted to generate and then asked it to explain how the test worked both in technical language and elementry school (using examples).
 
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
-
+# When you run Streamlit it runs your python script from top to bottom. Replays the movie from the beginning.
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
+# Before starting the lab; read each file and understand what each file does. This will help me better prompt and understand if the AI is directing me the correct way.
+- This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
+# Provide it more context.
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+# AI generated code can be super helpful and facilitate things, but it can also give you shortcuts if not promoted correctly and shortcuts does not mean it is correct.

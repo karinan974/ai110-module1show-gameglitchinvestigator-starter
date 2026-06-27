@@ -25,29 +25,54 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] **Describe the game's purpose.**
+  It's a Streamlit number-guessing game. The app picks a secret number in a
+  range that depends on the chosen difficulty (Easy/Normal/Hard). The player
+  types a guess and gets a hint — "Too High" or "Too Low" — until they land on
+  the secret. A score updates with each attempt, and the game ends on a win or
+  when attempts run out.
+
+- [x] **Detail which bugs you found.**
+  - **Backwards hints (logic bug):** a guess *above* the secret returned
+    "📈 Go HIGHER!" and a guess *below* returned "📉 Go LOWER!", pushing the
+    player away from the answer.
+  - **Fragile secret comparison:** on even-numbered attempts the app passes the
+    secret as a string, which made `check_guess` fall back to comparing text
+    instead of numbers (e.g. `"9" > "30"` is `True`), giving wrong hints.
+  - **Game logic in the wrong file:** `check_guess` and `parse_guess` lived in
+    `app.py` instead of `logic_utils.py`, so they couldn't be tested cleanly.
+
+- [x] **Explain what fixes you applied.**
+  - Swapped the hint messages so a too-high guess now says "Go LOWER!" and a
+    too-low guess says "Go HIGHER!".
+  - Added `int(guess)`/`int(secret)` coercion in `check_guess` so number vs.
+    string never breaks the comparison.
+  - Moved `check_guess` and `parse_guess` into `logic_utils.py` and imported
+    them back into `app.py`.
+  - Added a pytest regression test covering both hint directions.
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
-
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User enters a guess of 40
+2. Game returns "Too Low"
+3. User enters a guess of 70 → "Too High"
+4. Score updates correctly after each guess
+5. Game ends after the correct guess
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
-```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+# ====================================================== test session starts ======================================================
+# platform darwin -- Python 3.9.0, pytest-8.4.2, pluggy-1.6.0 -- /Users/karinanaranjo/ai110-module1show-gameglitchinvestigator-starter/.venv/bin/python
+# cachedir: .pytest_cache
+# rootdir: /Users/karinanaranjo/ai110-module1show-gameglitchinvestigator-starter
+# collected 2 items                                                                                                               
+
+# test/test_game_logic.py::test_too_high_guess_tells_player_to_go_lower PASSED                                              [ 50%]
+# test/test_game_logic.py::test_too_low_guess_tells_player_to_go_higher PASSED                                              [100%]
+
+# ======================================================= 2 passed in 0.01s =======================================================
 
 ## 🚀 Stretch Features
 
